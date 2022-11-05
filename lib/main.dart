@@ -1,8 +1,14 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+import 'package:notes_app/screens/homePage.dart';
 import 'package:notes_app/theme/themes.dart';
 
-void main() => runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -16,23 +22,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: iconSwitch ? lightTheme : darkTheme,
-      home: Scaffold(
-        appBar: AppBar(
-          leading: const Icon(Icons.library_books_rounded),
-          title: const Text("Notes"),
-          actions: [
-            IconButton(
-                onPressed: () {
-                  setState(() {
-                    iconSwitch = !iconSwitch;
-                  });
-                },
-                icon: Icon(iconSwitch ? iconLight : iconDark))
-          ],
-          centerTitle: true,
-        ),
-        body: const Center(child: Text("intial body text")),
-      ),
+      home: HomePage(),
       debugShowCheckedModeBanner: false,
     );
   }
