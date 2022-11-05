@@ -35,32 +35,32 @@ class HomePageState extends State<HomePage> {
           ],
           centerTitle: true,
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(
-                height: 10,
-              ),
-              Text(
-                "Your Recent Texts",
-                style: defaultFont,
-              ),
-              const SizedBox(height: 20),
-              StreamBuilder<QuerySnapshot>(
-                stream:
-                    FirebaseFirestore.instance.collection("Notes").snapshots(),
-                builder: ((context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                  if (snapshot.hasData) {
-                    return SingleChildScrollView(
-                      child: Column(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  "Your Recent Texts",
+                  style: defaultFont,
+                ),
+                const SizedBox(height: 20),
+                StreamBuilder<QuerySnapshot>(
+                  stream:
+                      FirebaseFirestore.instance.collection("Notes").snapshots(),
+                  builder: ((context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    if (snapshot.hasData) {
+                      return Column(
                         children: snapshot.data!.docs
                             .map(
                               (note) => note_card(() {
@@ -72,16 +72,16 @@ class HomePageState extends State<HomePage> {
                               }, note),
                             )
                             .toList(),
-                      ),
+                      );
+                    }
+                    return Text(
+                      "There's no Text :(",
+                      style: defaultFont,
                     );
-                  }
-                  return Text(
-                    "There's no Text :(",
-                    style: defaultFont,
-                  );
-                }),
-              )
-            ],
+                  }),
+                )
+              ],
+            ),
           ),
         ),
         floatingActionButton: FloatingActionButton.extended(
