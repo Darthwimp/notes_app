@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import 'dart:math';
@@ -37,9 +38,16 @@ class InputEditorState extends State<InputEditor> {
               ),
               style: noteTitle,
             ),
-            const SizedBox( height: 8,),
-            Text(date, style: creationDate,),
-            const SizedBox( height: 30,),
+            const SizedBox(
+              height: 8,
+            ),
+            Text(
+              date,
+              style: creationDate,
+            ),
+            const SizedBox(
+              height: 30,
+            ),
             TextField(
               controller: maincontroller,
               keyboardType: TextInputType.multiline,
@@ -52,6 +60,20 @@ class InputEditorState extends State<InputEditor> {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.save),
+        onPressed: () async {
+          FirebaseFirestore.instance.collection("Notes").add({
+            "note_title": titlecontroller.text,
+            "creation_date": date,
+            "note_content": maincontroller.text,
+            "color_id": color_id
+          }).then((value) {
+            print(value.id);
+            Navigator.pop(context);
+          }).catchError((Error) => print("Failed due to $Error"));
+        },
       ),
     );
   }

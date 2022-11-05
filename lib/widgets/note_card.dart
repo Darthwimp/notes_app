@@ -4,9 +4,10 @@ import 'package:notes_app/styles/styles.dart';
 
 
 Widget note_card(Function()? onTap, QueryDocumentSnapshot doc) => InkWell(
-    onTap: () {},
+    onTap: onTap,
     child: SafeArea(
       child: Container(
+        margin: const EdgeInsets.only(top: 10, bottom: 10),
         padding: const EdgeInsets.all(8),
         height: 200,
         width: double.infinity,

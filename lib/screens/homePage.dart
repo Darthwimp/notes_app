@@ -39,6 +39,7 @@ class HomePageState extends State<HomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox( height: 10,),
             Text(
               "Your Recent Texts",
               style: defaultFont,

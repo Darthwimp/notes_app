@@ -12,8 +12,9 @@ List<Color> cardsColor = [
 ];
 
 TextStyle noteTitle =
-    GoogleFonts.poorStory(fontSize: 12, fontWeight: FontWeight.bold);
+    GoogleFonts.poorStory(fontSize: 25, fontWeight: FontWeight.bold);
 TextStyle noteContent =
-    GoogleFonts.poorStory(fontSize: 10, fontWeight: FontWeight.normal);
+    GoogleFonts.poorStory(fontSize: 22, fontWeight: FontWeight.normal);
 TextStyle creationDate =
-    GoogleFonts.roboto(fontSize: 10, fontWeight: FontWeight.bold);
+    GoogleFonts.roboto(fontSize: 20, fontWeight: FontWeight.bold);
+TextStyle defaultFont = GoogleFonts.roboto(fontSize: 20, fontWeight: FontWeight.bold);
