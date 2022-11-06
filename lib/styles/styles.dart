@@ -6,7 +6,7 @@ List<Color> cardsColor = [
   Colors.indigo.shade300,
   Colors.teal.shade300,
   Colors.lightBlue.shade300,
-  Colors.yellow.shade300,
+  Colors.orange.shade300,
   Colors.red.shade300,
   Colors.brown.shade300,
 ];
